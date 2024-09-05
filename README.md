@@ -1,5 +1,4 @@
 # HOI4-Anti-Cheat-Ghost-
-# Functionality: -
 ![image](https://github.com/user-attachments/assets/22a5e3fa-b2ae-4cbd-9109-55841f1a117b)
 ![image](https://github.com/user-attachments/assets/f478f73d-830a-44b8-a1de-05c6acf659d1)
 ![image](https://github.com/user-attachments/assets/d40e2c3a-74d1-4cef-8fcf-8f09e79aaa10)
