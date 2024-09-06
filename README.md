@@ -17,7 +17,7 @@ Changelog - Opens a window with a list of all changes.\
 First of all I recommend keeping the exe in a separate folder so that updates are done faster and more successfully.\
 The application will not work offline, as it uses a database.\
 Always download only the release versions.\
-All the above functions will only work if the application is open.\
+All the above functions will only work if the application is launched.\
 Before running this program, close all Python consoles!\
 If you don’t have new players when joining the list of joins, then you will most likely require a rehost (I don’t know why this happens).\
 Some blocked players may connect in 2-3 times due to dynamic ips(VPNS), u will see ip changed in connection log/list.\
@@ -48,7 +48,7 @@ Changelog - Открывает окно с списком всех измене�
 Прежде всего, я рекомендую сохранить exe в отдельной папке, чтобы обновления проходили быстрее и успешнее.\
 Приложение не будет работать в оффлайне, поскольку оно использует базу данных.\
 Всегда загружайте только Releases версию.\
-Все вышеуказанные функции будут работать только если приложение открыто.\
+Все вышеуказанные функции будут работать только если приложение запущено.\
 Перед запуском этой программы, закройте все консоли Python!\
 Если у вас не показываються в списке подключений, то вам скорее всего потребуется рехост (я не знаю, почему это происходит).\
 Некоторые заблокированные игроки могут подключаться в 2-3 раза из-за динамических ip (VPNS), u вы будет видеть ip изменения в журнале/ списке подключения.\
