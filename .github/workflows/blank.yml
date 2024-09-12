@@ -28,19 +28,13 @@ jobs:
       - name: Clone HOI4-Anti-Cheat-Ghost- repo
         run: |
           git clone https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost-.git
-          cd HOI4-Anti-Cheat-Ghost-
-
-      # Шаг 4: Проверяем содержимое директории HOI4-Anti-Cheat-Ghost-
-      - name: List files in HOI4-Anti-Cheat-Ghost-
+          
+      # Шаг 4: Копируем файл keys.txt в директорию репозитория
+      - name: Copy keys.txt to repo
         run: |
-          ls -la
+          cp keys.txt HOI4-Anti-Cheat-Ghost-/keys.txt
 
-      # Шаг 5: Копируем файл keys.txt в директорию репозитория
-      - name: Copy keys.txt
-        run: |
-          cp ../keys.txt .
-
-      # Шаг 6: Коммитим и пушим изменения
+      # Шаг 5: Коммитим и пушим изменения
       - name: Commit changes
         run: |
           cd HOI4-Anti-Cheat-Ghost-
@@ -48,4 +42,4 @@ jobs:
           git config --global user.name "Wolfram49"
           git add keys.txt
           git commit -m "Synced keys.txt from keys repo"
-          git push https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost-.git
+          git push
