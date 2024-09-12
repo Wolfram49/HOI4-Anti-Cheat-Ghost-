@@ -40,5 +40,5 @@ jobs:
       # Шаг 5: Пушим изменения в публичный репозиторий `HOI4-Anti-Cheat-Ghost`
       - name: Push changes
         run: |
-          cd HOI4-Anti-Cheat-Ghost
+          cd HOI4-Anti-Cheat-Ghost-
           git push https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost-.git
