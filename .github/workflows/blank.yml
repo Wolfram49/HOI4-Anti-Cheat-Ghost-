@@ -1,4 +1,4 @@
-name: Sync keys.txt to HOI4-Anti-Cheat-Ghost
+name: Sync keys.txt to HOI4-Anti-Cheat-Ghost-
 
 on:
   push:
@@ -18,20 +18,20 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       # Шаг 2: Клонируем публичный репозиторий `Wolfram49/HOI4-Anti-Cheat-Ghost`
-      - name: Clone HOI4-Anti-Cheat-Ghost repo
+      - name: Clone HOI4-Anti-Cheat-Ghost- repo
         run: |
-          git clone https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost.git
-          cd HOI4-Anti-Cheat-Ghost
+          git clone https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost-.git
+          cd HOI4-Anti-Cheat-Ghost-
 
       # Шаг 3: Копируем файл `keys.txt` из приватного репозитория в публичный
       - name: Copy keys.txt
         run: |
-          cp ../keys/keys.txt HOI4-Anti-Cheat-Ghost/  # Копируем файл `keys.txt` в публичный репозиторий
+          cp ../keys/keys.txt HOI4-Anti-Cheat-Ghost-/  # Копируем файл `keys.txt` в публичный репозиторий
 
       # Шаг 4: Коммитим изменения в публичный репозиторий `HOI4-Anti-Cheat-Ghost`
       - name: Commit changes
         run: |
-          cd HOI4-Anti-Cheat-Ghost
+          cd HOI4-Anti-Cheat-Ghost-
           git config --global user.email "vadimbabatenko@gmail.com"
           git config --global user.name "Wolfram49"
           git add keys.txt
@@ -41,4 +41,4 @@ jobs:
       - name: Push changes
         run: |
           cd HOI4-Anti-Cheat-Ghost
-          git push https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost.git
+          git push https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost-.git
