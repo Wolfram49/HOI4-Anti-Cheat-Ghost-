@@ -10,12 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Шаг 1: Клонируем приватный репозиторий с использованием персонального токена
-      - name: Checkout keys repo
-        uses: actions/checkout@v2
-        with:
-          repository: Wolfram49/keys
-          token: ${{ secrets.PAT_TOKEN }}  # Использование секретного токена
+      # Шаг 1: Получаем токен и загружаем файл keys.txt из приватного репозитория
+      - name: Download keys.txt
+        run: |
+          curl -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+               -L \
+               -o keys.txt \
+               https://raw.githubusercontent.com/Wolfram49/keys/main/keys.txt
 
       # Шаг 2: Клонируем публичный репозиторий
       - name: Clone HOI4-Anti-Cheat-Ghost- repo
@@ -26,7 +27,7 @@ jobs:
       # Шаг 3: Копируем файл keys.txt
       - name: Copy keys.txt
         run: |
-          cp ../keys/keys.txt HOI4-Anti-Cheat-Ghost-/
+          cp ../keys.txt .
 
       # Шаг 4: Коммитим и пушим изменения
       - name: Commit changes
