@@ -16,19 +16,20 @@ jobs:
           curl -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
                -L \
                -o keys.txt \
-               https://raw.githubusercontent.com/Wolfram49/keys/main/keys.txt
+               https://api.github.com/repos/Wolfram49/keys/contents/keys.txt \
+               | jq -r '.content' | base64 -d > keys.txt
 
       # Шаг 2: Проверяем наличие файла keys.txt
       - name: Check keys.txt
         run: |
-          ls -la keys.txt
+          ls -la
           cat keys.txt
 
       # Шаг 3: Клонируем публичный репозиторий
       - name: Clone HOI4-Anti-Cheat-Ghost- repo
         run: |
           git clone https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost-.git
-          
+
       # Шаг 4: Проверяем содержимое директории HOI4-Anti-Cheat-Ghost-
       - name: List files in HOI4-Anti-Cheat-Ghost-
         run: |
