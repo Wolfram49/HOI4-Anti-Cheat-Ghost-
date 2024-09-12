@@ -26,7 +26,7 @@ jobs:
     # Шаг 3: Копируем нужные файлы из приватного в публичный репозиторий
     - name: Copy files
       run: |
-        cp -R Wolfram49/keys/contents/keys.txt ./HOI4-Anti-Cheat-Ghost-/
+        cp -R Wolfram49/keys/keys.txt ./HOI4-Anti-Cheat-Ghost-/
     
     # Шаг 4: Коммитим изменения в публичный репозиторий
     - name: Commit changes
