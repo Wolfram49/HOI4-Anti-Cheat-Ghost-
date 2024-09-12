@@ -29,7 +29,7 @@ jobs:
       - name: Clone HOI4-Anti-Cheat-Ghost- repo
         run: |
           git clone https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost-.git
-          
+
       # Шаг 4: Проверяем содержимое директории HOI4-Anti-Cheat-Ghost-
       - name: List files in HOI4-Anti-Cheat-Ghost-
         run: |
@@ -39,7 +39,7 @@ jobs:
       - name: Copy keys.txt to repo
         run: |
           cp keys.txt HOI4-Anti-Cheat-Ghost-/keys.txt
-          
+
       # Шаг 6: Коммитим и пушим изменения
       - name: Commit and push changes
         run: |
