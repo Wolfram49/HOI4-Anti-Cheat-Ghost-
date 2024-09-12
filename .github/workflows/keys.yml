@@ -1,0 +1,51 @@
+name: Sync keys.txt to HOI4-Anti-Cheat-Ghost-
+
+on:
+  push:
+    branches:
+      - main  # Запускать действие при изменении в основной ветке
+
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Шаг 1: Получаем токен и загружаем содержимое файла keys.txt из приватного репозитория
+      - name: Download keys.txt from private repo
+        run: |
+          curl -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+               -L \
+               -o keys.txt \
+               https://api.github.com/repos/Wolfram49/keys/contents/keys.txt \
+               | jq -r '.content' | base64 -d > keys.txt
+
+      # Шаг 2: Проверяем наличие файла keys.txt
+      - name: Check keys.txt
+        run: |
+          ls -la
+          cat keys.txt
+
+     # Шаг 3: Клонируем публичный репозиторий
+      - name: Clone HOI4-Anti-Cheat-Ghost- repo
+        run: |
+          git clone https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost-.git
+
+      # Шаг 4: Проверяем содержимое директории HOI4-Anti-Cheat-Ghost-
+      - name: List files in HOI4-Anti-Cheat-Ghost-
+        run: |
+          ls -la HOI4-Anti-Cheat-Ghost-
+
+      # Шаг 5: Копируем файл keys.txt в директорию репозитория
+      - name: Copy keys.txt to repo
+        run: |
+          cp keys.txt HOI4-Anti-Cheat-Ghost-/keys.txt
+          
+      # Шаг 6: Коммитим и пушим изменения
+      - name: Commit changes
+        run: |
+          cd HOI4-Anti-Cheat-Ghost-
+          git config --global user.email "vadimbabatenko@gmail.com"
+          git config --global user.name "Wolfram49"
+          git add keys.txt
+          git commit -m "Synced keys.txt from keys repo"
+          git push origin main
