@@ -1,36 +1,51 @@
-# This is a basic workflow to help you get started with Actions
+name: Sync keys.txt to HOI4-Anti-Cheat-Ghost-
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main  # Запускать действие при изменении в основной ветке
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  copy-file:
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      # Шаг 1: Получаем токен и загружаем содержимое файла keys.txt из приватного репозитория
+      - name: Download keys.txt from private repo
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          curl -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+               -L \
+               -o keys.txt \
+               https://api.github.com/repos/Wolfram49/keys/contents/keys.txt \
+               | jq -r '.content' | base64 -d > keys.txt
+
+      # Шаг 2: Проверяем наличие файла keys.txt
+      - name: Check keys.txt
+        run: |
+          ls -la keys.txt
+
+      # Шаг 3: Клонируем публичный репозиторий
+      - name: Clone HOI4-Anti-Cheat-Ghost- repo
+        run: |
+          git clone https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost-.git
+          cd HOI4-Anti-Cheat-Ghost-
+
+      # Шаг 4: Проверяем содержимое директории HOI4-Anti-Cheat-Ghost-
+      - name: List files in HOI4-Anti-Cheat-Ghost-
+        run: |
+          ls -la
+
+      # Шаг 5: Копируем файл keys.txt в директорию репозитория
+      - name: Copy keys.txt
+        run: |
+          cp ../keys.txt .
+
+      # Шаг 6: Коммитим и пушим изменения
+      - name: Commit changes
+        run: |
+          cd HOI4-Anti-Cheat-Ghost-
+          git config --global user.email "vadimbabatenko@gmail.com"
+          git config --global user.name "Wolfram49"
+          git add keys.txt
+          git commit -m "Synced keys.txt from keys repo"
+          git push https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost-.git
