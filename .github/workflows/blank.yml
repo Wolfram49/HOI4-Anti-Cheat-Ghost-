@@ -16,13 +16,12 @@ jobs:
           curl -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
                -L \
                -o keys.txt \
-               https://api.github.com/repos/Wolfram49/keys/contents/keys.txt \
-               | jq -r '.content' | base64 -d > keys.txt
+               https://raw.githubusercontent.com/Wolfram49/keys/main/keys.txt
 
       # Шаг 2: Проверяем наличие файла keys.txt
       - name: Check keys.txt
         run: |
-          ls -la
+          ls -la keys.txt
           cat keys.txt
 
       # Шаг 3: Клонируем публичный репозиторий
