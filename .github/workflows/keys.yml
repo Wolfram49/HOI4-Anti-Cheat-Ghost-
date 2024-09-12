@@ -29,7 +29,7 @@ jobs:
       - name: Clone HOI4-Anti-Cheat-Ghost- repo
         run: |
           git clone https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost-.git
-
+          
       # Шаг 4: Проверяем содержимое директории HOI4-Anti-Cheat-Ghost-
       - name: List files in HOI4-Anti-Cheat-Ghost-
         run: |
@@ -45,7 +45,7 @@ jobs:
         run: |
           cd HOI4-Anti-Cheat-Ghost-
           git config --global user.email "vadimbabatenko@gmail.com"
-          git config --global user.name "/Wolfram49"
+          git config --global user.name "Wolfram49"
           git add keys.txt
           git commit -m "Synced keys.txt from keys repo"
-          git push https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost-.git HEAD:main
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Wolfram49/HOI4-Anti-Cheat-Ghost-.git HEAD:main
