@@ -32,8 +32,8 @@ jobs:
       - name: Commit changes
         run: |
           cd HOI4-Anti-Cheat-Ghost
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
+          git config --global user.email "vadimbabatenko@gmail.com"
+          git config --global user.name "Wolfram49"
           git add keys.txt
           git commit -m "Sync keys.txt from keys repo"
 
