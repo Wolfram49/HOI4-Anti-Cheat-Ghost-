@@ -1,44 +1,44 @@
-name: Sync Private to Public
+name: Sync keys.txt to HOI4-Anti-Cheat-Ghost
 
 on:
   push:
     branches:
-      - main  # Или другая ветка, из которой нужно копировать
+      - main  # Запускать действие при изменениях в основной ветке
 
 jobs:
-  sync:
+  copy-file:
     runs-on: ubuntu-latest
-    
+
     steps:
-    # Шаг 1: Клонируем приватный репозиторий
-    - name: Checkout private repo
-      uses: actions/checkout@v2
-      with:
-        repository: Wolfram49/keys
-        token: ${{ secrets.GITHUB_TOKEN }}
-    
-    # Шаг 2: Клонируем публичный репозиторий
-    - name: Clone public repo
-      run: |
-        git clone https://github.com/Wolfram49/Wolfram49/HOI4-Anti-Cheat-Ghost-.git
-        cd ИмяПубличногоРепо
-    
-    # Шаг 3: Копируем нужные файлы из приватного в публичный репозиторий
-    - name: Copy files
-      run: |
-        cp -R Wolfram49/keys/keys.txt ./HOI4-Anti-Cheat-Ghost-/
-    
-    # Шаг 4: Коммитим изменения в публичный репозиторий
-    - name: Commit changes
-      run: |
-        cd HOI4-Anti-Cheat-Ghost-
-        git config --global user.email "vababatenko@gmail.com"
-        git config --global user.name "Wolfram49"
-        git add .
-        git commit -m "Syncing files from private repo"
-    
-    # Шаг 5: Отправляем изменения в публичный репозиторий
-    - name: Push changes
-      run: |
-        cd HOI4-Anti-Cheat-Ghost-
-        git push https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost-.git
+      # Шаг 1: Клонируем репозиторий `keys`
+      - name: Checkout keys repo
+        uses: actions/checkout@v2
+        with:
+          repository: Wolfram49/keys
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Шаг 2: Клонируем публичный репозиторий `HOI4-Anti-Cheat-Ghost`
+      - name: Clone HOI4-Anti-Cheat-Ghost repo
+        run: |
+          git clone https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost.git
+          cd HOI4-Anti-Cheat-Ghost
+
+      # Шаг 3: Копируем файл `keys.txt` в репозиторий `HOI4-Anti-Cheat-Ghost`
+      - name: Copy keys.txt
+        run: |
+          cp ../keys.txt HOI4-Anti-Cheat-Ghost/  # Копируем файл
+
+      # Шаг 4: Коммитим изменения в репозиторий `HOI4-Anti-Cheat-Ghost`
+      - name: Commit changes
+        run: |
+          cd HOI4-Anti-Cheat-Ghost
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+          git add keys.txt
+          git commit -m "Sync keys.txt from keys repo"
+
+      # Шаг 5: Пушим изменения в репозиторий `HOI4-Anti-Cheat-Ghost`
+      - name: Push changes
+        run: |
+          cd HOI4-Anti-Cheat-Ghost
+          git push https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost.git
