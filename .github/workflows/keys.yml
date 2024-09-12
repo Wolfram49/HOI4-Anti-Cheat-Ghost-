@@ -45,7 +45,7 @@ jobs:
         run: |
           cd HOI4-Anti-Cheat-Ghost-
           git config --global user.email "vadimbabatenko@gmail.com"
-          git config --global user.name "Wolfram"
+          git config --global user.name "/Wolfram49"
           git add keys.txt
           git commit -m "Synced keys.txt from keys repo"
           git push https://github.com/Wolfram49/HOI4-Anti-Cheat-Ghost-.git HEAD:main
