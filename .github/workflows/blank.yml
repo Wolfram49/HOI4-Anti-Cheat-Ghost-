@@ -11,7 +11,7 @@ jobs:
 
     steps:
       # Шаг 1: Получаем токен и загружаем содержимое файла keys.txt из приватного репозитория
-      - name: Download keys.txt
+      - name: Download keys.txt from private repo
         run: |
           curl -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
                -L \
@@ -35,10 +35,10 @@ jobs:
         run: |
           ls -la
 
-      # Шаг 5: Копируем файл keys.txt
+      # Шаг 5: Копируем файл keys.txt в директорию репозитория
       - name: Copy keys.txt
         run: |
-          cp ../keys.txt ./
+          cp ../keys.txt .
 
       # Шаг 6: Коммитим и пушим изменения
       - name: Commit changes
